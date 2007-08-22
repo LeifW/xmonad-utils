@@ -23,3 +23,9 @@ extensions:         ForeignFunctionInterface
 Hs-Source-Dirs:     src/
 ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -lcrypt -optl-Wl,-s
 ghc-prof-options:   -prof -auto-all
+
+executable:         hmanage
+main-is:            hmanage.hs
+Hs-Source-Dirs:     src/
+ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -optl-Wl,-s
+ghc-prof-options:   -prof -auto-all
