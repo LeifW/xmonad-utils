@@ -2,7 +2,7 @@
 -- |
 -- Module      :  hmanage
 -- Copyright   :  (c) Andrea Rossato
--- License     :  GPL2
+-- License     :  BSD3
 -- 
 -- Maintainer  :  Andrea Rossato <andrea.rossato@unibz.it>
 -- Stability   :  unstable

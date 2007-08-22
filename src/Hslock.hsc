@@ -16,6 +16,9 @@
 --
 -- hsc2hs hslock.hsc
 -- ghc --make hslock.hs -fglasgow-exts -lcrypt
+--
+-- Then, as root, set it suid root:
+-- chmod u+s /path/to/hslock
 -----------------------------------------------------------------------------
 
 module Main where

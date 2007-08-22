@@ -1,11 +1,25 @@
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  hxsel
+-- Copyright   :  (c) Andrea Rossato
+-- License     :  BSD3
+-- 
+-- Maintainer  :  Andrea Rossato <andrea.rossato@unibz.it>
+-- Stability   :  unstable
+-- Portability :  unportable
+--
+--  Returns the mouse selection
+--
+-----------------------------------------------------------------------------
+
 module Main where
+
 import Graphics.X11.Xlib
 import Graphics.X11.Xlib.Extras
 import System.Exit (exitWith, ExitCode(..))
 
 import Data.Maybe
 import Data.Char
-
 
 main :: IO ()
 main = do 
@@ -25,4 +39,3 @@ main = do
        else do putStrLn "Failed!"
   destroyWindow dpy win
   exitWith ExitSuccess
-
