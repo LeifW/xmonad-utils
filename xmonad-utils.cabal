@@ -15,3 +15,11 @@ main-is:            hxsel.hs
 Hs-Source-Dirs:     src/
 ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -optl-Wl,-s
 ghc-prof-options:   -prof -auto-all
+
+executable:         hslock
+main-is:            Hslock.hs
+other-modules:	    Hslock
+extensions:         ForeignFunctionInterface
+Hs-Source-Dirs:     src/
+ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -lcrypt -optl-Wl,-s
+ghc-prof-options:   -prof -auto-all
