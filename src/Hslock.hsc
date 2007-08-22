@@ -133,12 +133,14 @@ handle d i (ks,str) (KeyEvent {ev_event_type = t})
   p <- readIORef i
   b <- verifyPWD u p
   if b then return ()
-     else modifyIORef i (\_ -> []) >> eventLoop d i
+       else modifyIORef i (\_ -> []) >> eventLoop d i
 -- Escape: restart
     | t == keyPress && ks == xK_Escape = do
   modifyIORef i (\_ -> [])
   eventLoop d i
-    | t == keyPress &&  str == "" = eventLoop d i
+-- empty string -> loop
+    | t == keyPress && str == "" = eventLoop d i
+-- something to save
     | otherwise = do
   modifyIORef i (\s -> s ++ str)
   eventLoop d i
