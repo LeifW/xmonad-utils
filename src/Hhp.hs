@@ -18,6 +18,7 @@ import Prelude hiding (catch)
 import Control.Concurrent
 import Control.Exception
 import Control.Monad
+import Data.Bits
 import Graphics.X11.Xlib
 import Graphics.X11.Xlib.Extras
 import System.Exit
@@ -33,14 +34,15 @@ main = do
 
 hidePointer :: Display -> Window -> IO ()
 hidePointer d w = do
+  let em = buttonPressMask .|. pointerMotionMask
   cursor <- nullCursor d w
-  ps <- grabPointer d w False pointerMotionMask grabModeAsync 
+  ps <- grabPointer d w False em grabModeAsync 
                     grabModeAsync w cursor currentTime
   when (ps /= grabSuccess) $ do
         threadDelay (1*1000000)
         hidePointer d w
   allocaXEvent $ \e -> do
-      maskEvent d pointerMotionMask e
+      maskEvent d em e
       ungrabPointer d currentTime
       checkForMotion d w
 
