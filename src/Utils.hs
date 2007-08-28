@@ -17,9 +17,9 @@ module Utils where
 import Control.Concurrent
 import Control.Monad
 import Graphics.X11.Xlib
---import Graphics.X11.Xlib.Extras
 import System.Posix.Types (Fd(..))
 
+-- creates an invisible cursor
 nullCursor :: Display -> Window -> IO Cursor
 nullCursor d w = do
   let c = Color 0 0 0 0 0
@@ -38,7 +38,7 @@ waitASecond :: Int -> IO ()
 waitASecond i =
     threadDelay (i*1000000)
 
--- | A version of maskEvent that does not block in foreign calls.
+-- A version of maskEvent that does not block in foreign calls.
 maskEvent' :: Display -> EventMask -> XEventPtr -> IO ()
 maskEvent' d m p = do
   pend <- pending d

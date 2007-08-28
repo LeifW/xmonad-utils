@@ -32,6 +32,7 @@ main = do
   rootw  <- rootWindow dpy dflt
   waitForMotion dpy rootw
 
+-- hides and grabs the pointer till the user moves it
 hidePointer :: Display -> Window -> IO ()
 hidePointer d w = do
   let em = buttonPressMask .|. pointerMotionMask
@@ -46,7 +47,9 @@ hidePointer d w = do
       ungrabPointer d currentTime
       waitForMotion d w
 
--- | The event loop
+-- when the pointer is not moved a timer starts: after ten seconds, if
+-- no motion interrupts the timer, the pointer is grabbed and made
+-- invisible.
 waitForMotion :: Display -> Window -> IO ()
 waitForMotion d w = do
   mt <- myThreadId
