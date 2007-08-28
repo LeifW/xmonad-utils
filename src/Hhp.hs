@@ -30,7 +30,7 @@ main = do
   dpy <- openDisplay ""
   let dflt = defaultScreen dpy
   rootw  <- rootWindow dpy dflt
-  checkForMotion dpy rootw
+  waitForMotion dpy rootw
 
 hidePointer :: Display -> Window -> IO ()
 hidePointer d w = do
@@ -44,11 +44,11 @@ hidePointer d w = do
   allocaXEvent $ \e -> do
       maskEvent d em e
       ungrabPointer d currentTime
-      checkForMotion d w
+      waitForMotion d w
 
 -- | The event loop
-checkForMotion :: Display -> Window -> IO ()
-checkForMotion d w = do
+waitForMotion :: Display -> Window -> IO ()
+waitForMotion d w = do
   mt <- myThreadId
   t <- forkIO (timer mt)
   block $ go t
@@ -58,11 +58,11 @@ checkForMotion d w = do
         waitASecond 10
         throwTo t (ErrorCall "done")
       -- wait for the next motion, and restart the timer (?)
-      stopForMotion t = do
+      stopAndWait t = do
           allocaXEvent $ maskEvent' d pointerMotionMask
           -- this seems to just suspend the timer...
           throwTo t (ExitException ExitSuccess)
-          checkForMotion d w
+          waitForMotion d w
       -- wait for a timer interrupt to hide the pointer
       go t = do
-        catch (unblock $ stopForMotion t) (const $ hidePointer d w)
+        catch (unblock $ stopAndWait t) (const $ hidePointer d w)
