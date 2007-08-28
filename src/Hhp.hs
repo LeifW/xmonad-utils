@@ -39,7 +39,7 @@ hidePointer d w = do
   ps <- grabPointer d w False em grabModeAsync 
                     grabModeAsync w cursor currentTime
   when (ps /= grabSuccess) $ do
-        threadDelay (1*1000000)
+        waitASecond 1
         hidePointer d w
   allocaXEvent $ \e -> do
       maskEvent d em e
@@ -55,7 +55,7 @@ checkForMotion d w = do
     where
       -- interrupt the waiting for motion (and thus hide the pointer)
       timer t = do
-        threadDelay (10 * 1000000)
+        waitASecond 10
         throwTo t (ErrorCall "done")
       -- wait for the next motion, and restart the timer (?)
       stopForMotion t = do

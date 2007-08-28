@@ -34,6 +34,10 @@ initColor dpy color = do
   (apros,_) <- allocNamedColor dpy colormap color
   return $ color_pixel apros
 
+waitASecond :: Int -> IO ()
+waitASecond i =
+    threadDelay (i*1000000)
+
 -- | A version of maskEvent that does not block in foreign calls.
 maskEvent' :: Display -> EventMask -> XEventPtr -> IO ()
 maskEvent' d m p = do
