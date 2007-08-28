@@ -34,6 +34,8 @@ import System.Environment
 import Graphics.X11.Xlib
 import Graphics.X11.Xlib.Extras
 
+import Utils
+
 data Spwd = 
     Spwd { sp_namp :: CString
          , sp_pwdp :: CString
@@ -102,7 +104,7 @@ main = do
 
 grabInput :: Display -> Window -> IO GrabStatus
 grabInput dpy win = do
-  cursor <- createFontCursor dpy 88
+  cursor <- nullCursor dpy win
   grabPointer dpy win False noEventMask grabModeAsync grabModeAsync win cursor currentTime
   ks <- grabKeyboard dpy win True grabModeAsync grabModeAsync currentTime
   if (ks /= grabSuccess) 
@@ -157,9 +159,3 @@ mkUnmanagedWindow dpy scr rw x y w h = do
            set_background_pixel attributes $ blackPixel dpy (defaultScreen dpy)
            createWindow dpy rw x y w h 0 (defaultDepthOfScreen scr)
                         inputOutput visual attrmask attributes
-
-initColor :: Display -> String -> IO Pixel
-initColor dpy color = do
-  let colormap = defaultColormap dpy (defaultScreen dpy)
-  (apros,_) <- allocNamedColor dpy colormap color
-  return $ color_pixel apros
