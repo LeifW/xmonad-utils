@@ -28,8 +28,9 @@ main = do
   rootw  <- rootWindow dpy dflt
   win <- createSimpleWindow dpy rootw 0 0 200 100 0 0 0
   p <- internAtom dpy "PRIMARY" True
+  ty <- internAtom dpy "UTF8_STRING" False
   clp <- internAtom dpy "BLITZ_SEL_STRING" False
-  xConvertSelection dpy p sTRING clp win currentTime
+  xConvertSelection dpy p ty clp win currentTime
   allocaXEvent $ \e -> do
     nextEvent dpy e
     ev <- getEvent e
