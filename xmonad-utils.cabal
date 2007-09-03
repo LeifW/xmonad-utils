@@ -14,7 +14,7 @@ license:            BSD3
 license-file:       LICENSE
 author:             Andrea Rossato
 maintainer:         andrea.rossato@unibz.it
-build-depends:      base>=2.0, X11>=1.2.1, X11-extras>=0.2
+build-depends:      base>=2.0, X11>=1.2.1, X11-extras>=0.2, ghc>=6.6, unix
 
 executable:         hxsel
 main-is:            Hxsel.hs
@@ -38,6 +38,12 @@ ghc-prof-options:   -prof -auto-all
 
 executable:         hhp
 main-is:            Hhp.hs
+Hs-Source-Dirs:     src/
+ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -optl-Wl,-s
+ghc-prof-options:   -prof -auto-all
+
+executable:         heval
+main-is:            Heval.hs
 Hs-Source-Dirs:     src/
 ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -optl-Wl,-s
 ghc-prof-options:   -prof -auto-all
