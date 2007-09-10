@@ -22,6 +22,12 @@ Hs-Source-Dirs:     src/
 ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -optl-Wl,-s
 ghc-prof-options:   -prof -auto-all
 
+executable:         hxput
+main-is:            Hxput.hs
+Hs-Source-Dirs:     src/
+ghc-options:        -funbox-strict-fields -O2 -fasm -Wall -optl-Wl,-s
+ghc-prof-options:   -prof -auto-all
+
 executable:         hslock
 main-is:            Hslock.hs
 other-modules:	    Hslock
