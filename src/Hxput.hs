@@ -3,7 +3,7 @@
 -- Module      :  hxput
 -- Copyright   :  (c) Andrea Rossato, Matthew Sackman
 -- License     :  BSD3
--- 
+--
 -- Maintainer  :  Matthew Sackman <matthew@wellquite.org>
 -- Stability   :  unstable
 -- Portability :  unportable
@@ -40,6 +40,7 @@ main = do
             destroyWindow dpy win
             exitWith (ExitFailure 1)
 
+processEvent :: Display -> Atom -> [Char] -> XEventPtr -> IO a
 processEvent dpy ty text e = do
   nextEvent dpy e
   ev <- getEvent e
