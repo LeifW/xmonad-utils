@@ -89,7 +89,7 @@ main = do
       scr  = defaultScreenOfDisplay dpy
   rootw <- rootWindow dpy dflt
   win <- mkUnmanagedWindow dpy scr rootw 0 0 (widthOfScreen scr) (heightOfScreen scr)
-  selectInput dpy win keyPress
+  selectInput dpy win keyPressMask
   mapWindow dpy win
   sync dpy False
   i <- grabInput dpy win
