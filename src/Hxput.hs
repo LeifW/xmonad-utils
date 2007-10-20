@@ -27,7 +27,7 @@ main = do
   dpy <- openDisplay ""
   let dflt = defaultScreen dpy
   rootw  <- rootWindow dpy dflt
-  win <- createSimpleWindow dpy rootw 0 0 200 100 0 0 0
+  win <- createSimpleWindow dpy rootw 0 0 1 1 0 0 0
   p <- internAtom dpy "PRIMARY" True
   ty <- internAtom dpy "UTF8_STRING" False
   xSetSelectionOwner dpy p win currentTime
