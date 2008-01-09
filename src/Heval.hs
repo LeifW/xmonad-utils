@@ -3,7 +3,7 @@
 -- Module      :  Heval
 -- Copyright   :  (c) Andrea Rossato
 -- License     :  BSD3
--- 
+--
 -- Maintainer  :  Andrea Rossato <andrea.rossato@unibz.it>
 -- Stability   :  unstable
 -- Portability :  unportable
@@ -36,7 +36,7 @@ import System.Posix.Resource
 import System.Posix.Signals
 
 ghcPath :: String
-ghcPath = "/usr/lib/ghc-6.6.1"
+ghcPath = "/usr/lib/ghc-6.8.2"
 
 myLog :: Severity -> SrcSpan -> PprStyle -> Message -> IO ()
 myLog = \severity _ style msg ->
@@ -63,7 +63,7 @@ main = do
 
 initSession :: IO Session
 initSession = do
-  ses <- newSession Interactive (Just ghcPath)
+  ses <- newSession (Just ghcPath)
   df <- getSessionDynFlags ses
   setSessionDynFlags ses df  {log_action = myLog }
   setContext ses [] [mkModule (stringToPackageId "base") (mkModuleName "Prelude")]
@@ -71,7 +71,7 @@ initSession = do
 
 updateSession :: Session ->  [String] ->  IO ()
 updateSession ses l =
-    mapM_ (runWithTimeOut 3 . runStmt ses) l
+    mapM_ (runWithTimeOut 3 . flip (runStmt ses) SingleStep) l
 
 exprToRun :: String -> IO String
 exprToRun expr = do
@@ -87,7 +87,7 @@ runWithTimeOut to action = do
   res <- action
   killThread t
   return res
-  where 
+  where
     -- if this thread is not killed within t seconds it will raise the
     -- equivalent of a ^C
     checkerThread = do
@@ -105,7 +105,7 @@ runExp ses s
   return ()
      -- let: bind and update session
     | "let " `isPrefixOf` s = do
-  runWithTimeOut 3 $ runStmt ses s
+  runWithTimeOut 3 $ runStmt ses s SingleStep
   return ()
     -- something to eval
     | otherwise = do
@@ -115,7 +115,7 @@ runExp ses s
       go e = do
         str <- evalExpr ses e
         putStrLn str
-    
+
 evalExpr :: Session -> String -> IO String
 evalExpr ses expr = do
   maybe_dyn <- dynCompileExpr ses expr
