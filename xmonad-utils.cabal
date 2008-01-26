@@ -14,7 +14,9 @@ license:            BSD3
 license-file:       LICENSE
 author:             Andrea Rossato
 maintainer:         andrea.rossato@unibz.it
-build-depends:      base>=2.0, X11>=1.3, ghc>=6.6, unix, random>=1.0
+build-depends:      base>=2.0, X11>=1.3, ghc>=6.8, unix, random>=1.0
+build-type:         Simple
+tested-with:        GHC==6.8.2
 
 executable:         hxsel
 main-is:            Hxsel.hs
