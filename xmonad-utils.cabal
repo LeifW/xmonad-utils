@@ -23,37 +23,38 @@ tested-with:        GHC==6.8.2
 
 executable:         hxsel
 main-is:            Hxsel.hs
+other-modules: Heval Hhp Hmanage Hxput Hxsel Utils
 hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -O2 -Wall -optl-Wl,-s
+ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
 
 executable:         hxput
 main-is:            Hxput.hs
 hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -O2 -Wall -optl-Wl,-s
+ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
 
 executable:         hslock
 main-is:            Hslock.hs
 extensions:         ForeignFunctionInterface
 hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -O2 -Wall -lcrypt -optl-Wl,-s
+ghc-options:        -funbox-strict-fields -Wall -lcrypt
 ghc-prof-options:   -prof -auto-all
 
 executable:         hmanage
 main-is:            Hmanage.hs
 hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -O2 -Wall -optl-Wl,-s
+ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
 
 executable:         hhp
 main-is:            Hhp.hs
 hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -O2 -Wall -optl-Wl,-s
+ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
 
 executable:         heval
 main-is:            Heval.hs
 hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -O2 -Wall -optl-Wl,-s
+ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
