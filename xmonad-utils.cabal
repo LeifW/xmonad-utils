@@ -1,6 +1,12 @@
 name:               xmonad-utils
 version:            0.1
-homepage:           http://www.haskell.org/haskellwiki/Xmonad-utils
+license:            BSD3
+license-file:       LICENSE
+author:             Andrea Rossato
+maintainer:         andrea.rossato@unibz.it
+
+stability:          experimental
+category:           System
 synopsis:           A small collection of X utilities
 description:        A small collection of X utilities useful when
                     running XMonad. It includes: hxsel, which returns
@@ -9,11 +15,8 @@ description:        A small collection of X utilities useful when
                     toggle the override-redirect property of any
                     window; and hhp, a simple utility to hide the
                     pointer, similar to unclutter.
-category:           System
-license:            BSD3
-license-file:       LICENSE
-author:             Andrea Rossato
-maintainer:         andrea.rossato@unibz.it
+homepage:           http://www.haskell.org/haskellwiki/Xmonad-utils
+
 build-depends:      base>=2.0, X11>=1.3, ghc>=6.8, unix, random>=1.0
 build-type:         Simple
 tested-with:        GHC==6.8.2
