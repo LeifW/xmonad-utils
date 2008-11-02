@@ -3,7 +3,7 @@ version:            0.1
 license:            BSD3
 license-file:       LICENSE
 author:             Andrea Rossato
-maintainer:         <andrea.rossato@unibz.it>
+maintainer:         <andrea.rossato@unitn.it>
 
 stability:          experimental
 category:           System
@@ -22,14 +22,13 @@ description:        A small collection of X utilities useful when
                     to unclutter.
 homepage:           http://www.haskell.org/haskellwiki/Xmonad-utils
 
-build-depends:      base>=2.0, X11>=1.3, ghc>=6.8, unix, random>=1.0
+build-depends:      base<4, X11>=1.3, ghc>=6.8, unix, random>=1.0
 build-type:         Simple
 cabal-version:      >=1.4
 tested-with:        GHC==6.8.2
 
 executable:         hxsel
 main-is:            Hxsel.hs
-other-modules: Heval Hhp Hmanage Hxput Hxsel Utils
 hs-source-dirs:     src
 ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
@@ -56,12 +55,6 @@ ghc-prof-options:   -prof -auto-all
 
 executable:         hhp
 main-is:            Hhp.hs
-hs-source-dirs:     src
-ghc-options:        -funbox-strict-fields -Wall
-ghc-prof-options:   -prof -auto-all
-
-executable:         heval
-main-is:            Heval.hs
 hs-source-dirs:     src
 ghc-options:        -funbox-strict-fields -Wall
 ghc-prof-options:   -prof -auto-all
