@@ -16,7 +16,7 @@ module Main where
 
 import Prelude hiding (catch)
 import Control.Concurrent
-import Control.Exception
+import Control.OldException
 import Control.Monad
 import Data.Bits
 import Graphics.X11.Xlib
