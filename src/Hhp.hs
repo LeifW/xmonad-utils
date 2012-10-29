@@ -14,9 +14,9 @@
 
 module Main where
 
-import Prelude hiding (catch)
+import Prelude
 import Control.Concurrent
-import Control.OldException
+import Control.Exception
 import Control.Monad
 import Data.Bits
 import Graphics.X11.Xlib
@@ -64,8 +64,8 @@ waitForMotion d w = do
       stopAndWait t = do
           allocaXEvent $ maskEvent' d pointerMotionMask
           -- this seems to just suspend the timer...
-          throwTo t (ExitException ExitSuccess)
+          throwTo t (ExitSuccess)
           waitForMotion d w
       -- wait for a timer interrupt to hide the pointer
       go t = do
-        catch (unblock $ stopAndWait t) (const $ hidePointer d w)
+        catch (unblock $ stopAndWait t) ((const $ hidePointer d w)::ExitCode->IO ())

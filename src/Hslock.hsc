@@ -83,7 +83,7 @@ verifyPWD name pass = do
 main :: IO ()
 main = do
   s <- newIORef []
-  d <- catch (getEnv "DISPLAY") ( const $ return [])
+  d <- fmap (fromMaybe "") $ lookupEnv "DISPLAY"
   dpy <- openDisplay d
   let dflt = defaultScreen dpy
       scr  = defaultScreenOfDisplay dpy
