@@ -25,6 +25,7 @@ module Main where
 
 import Control.Monad
 import Control.Concurrent
+import Control.Exception (catch, SomeException)
 import Data.IORef
 import Data.Maybe
 import Foreign.C
@@ -83,7 +84,7 @@ verifyPWD name pass = do
 main :: IO ()
 main = do
   s <- newIORef []
-  d <- catch (getEnv "DISPLAY") ( const $ return [])
+  d <- catch (getEnv "DISPLAY") (const (return []) :: SomeException -> IO String)
   dpy <- openDisplay d
   let dflt = defaultScreen dpy
       scr  = defaultScreenOfDisplay dpy
