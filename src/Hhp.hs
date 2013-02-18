@@ -68,4 +68,4 @@ waitForMotion d w = do
           waitForMotion d w
       -- wait for a timer interrupt to hide the pointer
       go t = do
-        catch (unblock $ stopAndWait t) (const $ hidePointer d w :: SomeException -> IO ())
+        catch (unblock $ stopAndWait t) (const $ hidePointer d w :: ErrorCall -> IO ())
