@@ -14,7 +14,7 @@
 
 module Main where
 
-import Prelude hiding (catch)
+import Prelude
 import Control.Concurrent
 import Control.Exception
 import Control.Monad

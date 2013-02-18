@@ -15,7 +15,6 @@
 module Utils where
 
 import Control.Concurrent
-import Control.Monad
 import Graphics.X11.Xlib
 import System.Posix.Types (Fd(..))
 
