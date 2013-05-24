@@ -3,7 +3,7 @@
 -- Module      :  Hhp
 -- Copyright   :  (c) Andrea Rossato
 -- License     :  BSD3
--- 
+--
 -- Maintainer  :  Andrea Rossato <andrea.rossato@unibz.it>
 -- Stability   :  unstable
 -- Portability :  unportable
@@ -14,7 +14,7 @@
 
 module Main where
 
-import Prelude
+import Prelude hiding (catch)
 import Control.Concurrent
 import Control.Exception
 import Control.Monad
@@ -26,7 +26,7 @@ import System.Exit
 import Utils
 
 main :: IO ()
-main = do 
+main = do
   dpy <- openDisplay ""
   let dflt = defaultScreen dpy
   rootw  <- rootWindow dpy dflt
@@ -37,7 +37,7 @@ hidePointer :: Display -> Window -> IO ()
 hidePointer d w = do
   let em = buttonPressMask .|. pointerMotionMask
   cursor <- nullCursor d w
-  ps <- grabPointer d w False em grabModeAsync 
+  ps <- grabPointer d w False em grabModeAsync
                     grabModeAsync w cursor currentTime
   when (ps /= grabSuccess) $ do
         waitASecond 1
