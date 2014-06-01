@@ -14,7 +14,6 @@
 
 module Main where
 
-import Prelude hiding (catch)
 import Control.Concurrent
 import Control.Exception
 import Control.Monad
@@ -54,7 +53,7 @@ waitForMotion :: Display -> Window -> IO ()
 waitForMotion d w = do
   mt <- myThreadId
   t <- forkIO (timer mt)
-  block $ go t
+  mask $ \restore -> go restore t
     where
       -- interrupt the waiting for motion (and thus hide the pointer)
       timer t = do
@@ -67,5 +66,5 @@ waitForMotion d w = do
           throwTo t (ExitSuccess)
           waitForMotion d w
       -- wait for a timer interrupt to hide the pointer
-      go t = do
-        catch (unblock $ stopAndWait t) (const $ hidePointer d w :: ErrorCall -> IO ())
+      go restore t = do
+        catch (restore $ stopAndWait t) (const $ hidePointer d w :: ErrorCall -> IO ())
