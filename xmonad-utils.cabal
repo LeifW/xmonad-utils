@@ -11,16 +11,18 @@ Synopsis:           A small collection of X utilities
 Description:        A small collection of X utilities useful when
                     running XMonad. It includes:
                     .
-                    * hxsel, which returns the text currently in the X selection;
+                    * hxsel: which returns the text currently in the X selection;
                     .
-                    * hslock, a simple X screen lock;
+                    * hxput: sets the value of the X paste buffer;
+                    .
+                    * hslock: a simple X screen lock;
                     .
                     * hmanage: an utility to toggle the override-redirect property of any
                     window;
                     .
-                    * and hhp, a simple utility to hide the pointer, similar
+                    * and hhp: a simple utility to hide the pointer, similar
                     to unclutter.
-Homepage:           https://github.com/LeifW/xmonad-utils.git
+Homepage:           https://github.com/LeifW/xmonad-utils
 
 Build-type:         Simple
 Cabal-version:      >=1.6
