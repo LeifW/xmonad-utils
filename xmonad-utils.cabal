@@ -1,5 +1,5 @@
 Name:               xmonad-utils
-Version:            0.1.3.2.1
+Version:            0.1.3.3
 License:            BSD3
 License-file:       LICENSE
 Author:             Andrea Rossato
@@ -20,7 +20,7 @@ Description:        A small collection of X utilities useful when
                     .
                     * and hhp, a simple utility to hide the pointer, similar
                     to unclutter.
-Homepage:           http://www.haskell.org/haskellwiki/Xmonad-utils
+Homepage:           https://github.com/LeifW/xmonad-utils.git
 
 Build-type:         Simple
 Cabal-version:      >=1.6
